@@ -1,0 +1,66 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+}
+body {
+	background: #eaeaea;
+}
+ul, li {
+	list-style: none;
+}
+img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	width: 600px;
+	height: 300px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+	padding: 300px 0;
+}
+.list, .copyList {
+	width: 2400px;
+	height: 300px;
+	left: 0;
+	transition: 0.5s;
+	position: absolute;
+}
+.copyList {
+	left: 2400px;
+}
+.list li, .copyList li {
+	width: 600px;
+	height: 100%;
+	float: left;
+}
+.dots {
+	position: absolute;
+	left: 50%;
+	bottom: 15px;
+	z-index: 9999;
+	transform: translate(-50%, 0);
+}
+.dots li {
+	width: 15px;
+	height: 15px;
+	margin-right: 15px;
+	border-radius: 50%;
+	background: #ddd;
+	float: left;
+}
+.dots li:nth-last-child(1) {
+	margin: 0;
+}
+.dots .active {
+	width: 25px;
+	border-radius: 30px;
+}
