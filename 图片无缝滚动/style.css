@@ -23,24 +23,20 @@ img {
 	width: 600px;
 	height: 300px;
 	margin: 0 auto;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	position: relative;
 	padding: 300px 0;
 }
-.list, .copyList {
-	width: 2400px;
+.list {
+	display: flex;
 	height: 300px;
-	left: 0;
-	transition: 0.5s;
+	left: -600px;
 	position: absolute;
 }
-.copyList {
-	left: 2400px;
-}
-.list li, .copyList li {
+.list li {
 	width: 600px;
 	height: 100%;
-	float: left;
+	/*float: left;*/
 }
 .dots {
 	position: absolute;

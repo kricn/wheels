@@ -10,7 +10,7 @@ let images = [
 ];
 
 //当前显示的图片
-let currentImage = 0;
+let currentImage = 2;
 
 //鼠标按下的坐标位置
 let mousePoint = {
@@ -26,7 +26,7 @@ let step = 600
 
 //创建图片列表
 const creteImageList = (ele, images) => {
-	images.forEach(item => {
+	images.forEach((item, index) => {
 		let list_item = document.createElement('li');
 		let img = document.createElement('img');
 		img.src = item.url
@@ -52,14 +52,32 @@ window.onload = () => {
 
 	//创建图片列表
 	let list = document.createElement('ul');
-	let copyList = document.createElement('ul');
 	list.className = 'list';
-	copyList.className = 'copyList';
-	creteImageList(list, images);
-	creteImageList(copyList, images);
+	// list.style.width = (images.length + 2) * 600 + 'px';
+	images.forEach((item, index) => {
+		let list_item = document.createElement('li');
+		let img = document.createElement('img');
+		img.src = item.url
+		list_item.appendChild(img)
+		list.appendChild(list_item)
+	})
+	let listFirstChild = list.firstElementChild.cloneNode(true)
+	let listLastChild = list.lastElementChild.cloneNode(true)
+	list.insertBefore(listLastChild, list.children[0])
+	list.appendChild(listFirstChild)
 
 	//追加到容器
 	container.appendChild(list);
-	container.appendChild(copyList);
 	container.appendChild(dots);
+
+	timer = setInterval(() => {
+		list.style.left = currentImage * -600 + 'px';
+		list.style.transition = '.5s'
+		currentImage ++;
+		if (currentImage === images.length + 3) {
+			list.style.transition = 'none'
+			currentImage = 1
+			list.style.left = currentImage * -600 + 'px'
+		}
+	}, 1500)
 }
