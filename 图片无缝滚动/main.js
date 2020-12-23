@@ -10,7 +10,7 @@ let images = [
 ];
 
 //当前显示的图片
-let currentImage = 2;
+let currentImage = 0;
 
 //鼠标按下的坐标位置
 let mousePoint = {
@@ -61,8 +61,10 @@ window.onload = () => {
 		list_item.appendChild(img)
 		list.appendChild(list_item)
 	})
+	//复制第一张和最后一张图片
 	let listFirstChild = list.firstElementChild.cloneNode(true)
 	let listLastChild = list.lastElementChild.cloneNode(true)
+	//添加最后一张图片到最前面，第一张到最后面
 	list.insertBefore(listLastChild, list.children[0])
 	list.appendChild(listFirstChild)
 
@@ -70,14 +72,21 @@ window.onload = () => {
 	container.appendChild(list);
 	container.appendChild(dots);
 
-	timer = setInterval(() => {
+	//自动轮播
+	autoPlay(1000)
+
+	function autoPlay () {
+		currentImage ++;
 		list.style.left = currentImage * -600 + 'px';
 		list.style.transition = '.5s'
-		currentImage ++;
-		if (currentImage === images.length + 3) {
-			list.style.transition = 'none'
-			currentImage = 1
-			list.style.left = currentImage * -600 + 'px'
+		if (currentImage === images.length + 1) {
+			setTimeout(() => {
+				list.style.transition = 'none'
+				currentImage = 1
+				list.style.left = currentImage * -600 + 'px'
+			}, 500)
 		}
-	}, 1500)
+	}
+
+	timer = setInterval(autoPlay, 1000)
 }
